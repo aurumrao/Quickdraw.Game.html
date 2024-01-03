@@ -1,0 +1,23 @@
+body{
+background-color: goldenrod;
+}
+#show_sketch{
+    color: blue;
+    background-color: goldenrod;
+    border: 0px goldenrod solid;
+    text-decoration: underline;
+    float: left;
+    margin-left: 3px;
+}
+#score{
+    float: left;
+    font-variant-caps: all-petite-caps;
+    font-variant: small-caps;
+    margin-left: 10px;
+}
+#timer{
+    float: right;
+    font-variant-caps: all-petite-caps;
+    font-variant: small-caps;
+    margin-right: 10px;
+}
