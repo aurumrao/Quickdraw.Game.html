@@ -1,11 +1,10 @@
 body{
-background-color: goldenrod;
+background-color: palegoldenrod;
 }
 #show_sketch{
-    color: blue;
+    color: oldlace;
     background-color: goldenrod;
-    border: 0px goldenrod solid;
-    text-decoration: underline;
+    border: 3px darkgoldenrod solid;
     float: left;
     margin-left: 3px;
 }
@@ -20,4 +19,11 @@ background-color: goldenrod;
     font-variant-caps: all-petite-caps;
     font-variant: small-caps;
     margin-right: 10px;
+}
+p{
+    float: none;
+    color: mintcream;    
+}
+#backdrop{
+    background-color: gold;
 }
