@@ -9,3 +9,72 @@ var timer_check = empty;
 var drawn_sketch = empty;
 var answer_holder = empty;
 var score = 0;
+var counter = 0;
+document.getElementById("timer").innerHTML = timer_counter;
+for (i = 1; i <= timer_counter; i++){
+    timer_counter = timer_counter + 1;
+}
+function setup(){
+    canvas = createCanvas(280, 280);
+    canvas.center();
+    background("white");
+    canvas.mouseReleased(classifyCanvas);
+    synth = window.speechSynthesis;
+}
+function updateCanvas(){
+    canvas = createCanvas(280, 280);
+    canvas.center();
+    background("white");
+    document.getElementById("sketch").innerHTML = "Sketch to draw: " + sketch;
+}
+function draw(){
+    check_sketch();
+    if (drawn_sketch = sketch){
+        answer_holder = set;
+        timer_counter = timer_counter + 1;
+        document.getElementById("score").innerHTML = score;
+    }
+}
+
+function check_sketch(){
+     timer_counter = timer_counter + 1;
+     document.getElementById("timer").innerHTML = timer_counter;
+     console.log(timer_counter);
+     if (timer_counter > 5000){
+        timer_counter = 0;
+        timer_check = completed;
+     }
+     if (timer_check == completed || answer_holder == set){
+        timer_check = empty;
+        answer_holder = empty;
+        updateCanvas()
+     }
+}
+function preload(){
+    classifier = ml5.imageClassifier('DoodleNet');   
+}
+function draw(){
+    strokeWeight(13);
+    stroke(0);
+    if (mouseIsPressed){
+        line(pmouseX, pmouseY, mouseX, mouseY);
+    }
+}
+function classifyCanvas(){
+    classifier.classify(canvas, gotResult);
+}
+function gotResult(error, results){
+    if (error){
+        console.error(error);
+    }
+    console.log(results);
+    document.getElementById('label').innerHTML = 'You drew a '+ results[0].label;
+
+    document.getElementById('confidence').innerHTML = 'I am ' + Math.round(results[0].confidence * 100) + '% confident';
+
+    utterThis = new SpeechSynthesisUtterance(results[0].label);
+    synth.speak(utterThis);
+}
+function clearCanvas(){
+    background("white");
+}
